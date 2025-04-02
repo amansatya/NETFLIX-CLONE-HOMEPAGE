@@ -4,28 +4,38 @@
     box-sizing: border-box;
 }
 body{
-    background-color: black;
+    background: linear-gradient(to bottom, #100000 10%, #220404 50%, #150202 100%);
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Montserrat', 'Arial Black', sans-serif;
 }
 .mainnetflixcontainer{
-    border: 2px solid red;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(30, 10, 10, 0.92) 40%, rgba(55, 20, 20, 0.88) 100%);
+    border: 2px solid yellow;
     padding: 0 1.6rem;
     transition: background 0.3s ease-in-out;
+    position: relative;
+    z-index: 0;
+    height: 1000vh;
 }
 nav{
     display: flex;
+    background: transparent;
     height: 20vh;
     padding-top: 6px;
+    position: relative;
+    z-index: 1;
 }
 .navbarlogo{
     width: 50%;
 }
 .logo{
     width: 30.5%;
+    filter: brightness(1.2) contrast(1.5) sepia(0.5) saturate(2);
 }
 .logosmall{
     display: none;
     width: 40px;
+    filter: brightness(1.2) contrast(1.5) sepia(0.5) saturate(2);
 }
 @media screen and (max-width: 960px) {
     .logo {
@@ -98,4 +108,140 @@ nav{
     font-size: 10px;
     width: 60px;
     font-weight: bold;
+}
+.sectionsContainer {
+    margin-top: 20vh;
+    background: transparent;
+}
+.bannerSection {
+    height: 97vh;
+    repeat-x: center center/cover no-repeat;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    margin-top: -100px;
+    filter: brightness(0.9);
+    background: url("./bannerImage.jpg") 0 0;
+    transition: background-position 0.1s linear;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
+    z-index: 1;
+}
+.bannerContainer {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+    transform: translateY(50px);
+    opacity: 0.4;
+    animation: slideIn 1s ease-out forwards;
+}
+@keyframes slideIn {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.bannerContainer h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+    color: #ffffff;
+    opacity: 1;
+    text-decoration-style: solid;
+}
+.bannerContainer h4 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+.bannerContainer p {
+    font-size: 10px;
+    margin: 1rem 0;
+    max-width: 600px;
+    color: #ffffff;
+}
+.inputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    margin-top: 1rem;
+}
+.emailInputBox {
+    padding: 0.8rem 1rem;
+    border-radius: 50px;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1rem;
+    width: 250px;
+    border: 1px solid lightgrey;
+}
+.emailInputBox::placeholder {
+    color: #fff;
+}
+.getStartedButton {
+    background-color: #e50914;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s ease-in;
+}
+.getStartedButton:hover {
+    background-color: #f40612;
+}
+.playPauseIcon {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    z-index: 3;
+    cursor: pointer;
+    color: #fff;
+    opacity: 0.8;
+    transition: opacity 0.5s ease, transform 0.2s ease-in-out;
+    background: black;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.playPauseIcon:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+.playPauseIcon svg {
+    width: 20px;
+    height: 20px;
 }

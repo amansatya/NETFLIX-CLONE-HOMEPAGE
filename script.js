@@ -1,38 +1,59 @@
-document.addEventListener("DOMContentLoaded",function () {
-    const languageDropdown=document.querySelector(".language-dropdown");
-    const selectedLanguage=document.querySelector(".selected-language");
-    const navbar=document.querySelector(".mainnetflixcontainer");
-    const signInButton=document.querySelector("[data-lang='signIn']");
-    function changeLanguage(lang)
-    {
-        document.querySelectorAll("[data-lang]").forEach((element) => {
-            const translation=element.getAttribute(`data-${lang}`);
-            if (translation)
-                element.innerHTML=translation;
-        });
-        if (lang==="hi")
-        {
-            signInButton.style.width="90px";
-            signInButton.style.fontWeight="bold";
-        }
-        else
-        {
-            signInButton.style.width="60px";
-            signInButton.style.fontWeight="bold";
-        }
+document.addEventListener("DOMContentLoaded", function () {
+    const languageDropdown = document.querySelector(".language-dropdown");
+    const selectedLanguage = document.querySelector(".selected-language");
+    const signInButton = document.querySelector("[data-lang='signIn']");
+    const bannerSection = document.querySelector(".bannerSection");
+    const playPauseButton = document.querySelector(".playPauseIcon");
+    const emailInputBox = document.querySelector(".emailInputBox");
+    if (!languageDropdown || !selectedLanguage || !signInButton || !bannerSection || !playPauseButton || !emailInputBox) {
+        console.error("One or more elements are missing!");
+        return;
     }
-    languageDropdown.addEventListener("change",function ()
-    {
-        const selectedOption=languageDropdown.options[languageDropdown.selectedIndex];
-        selectedLanguage.textContent=selectedOption.text;
-        const selectedLang=selectedOption.value === "hi-IN" ? "hi" : "en";
+    let isPaused = false;
+    let position = 0;
+    let animationFrame;
+    function changeLanguage(lang) {
+        document.querySelectorAll("[data-lang]").forEach((element) => {
+            const translation = element.getAttribute(`data-${lang}`);
+            if (translation) {
+                if (element.tagName === "INPUT")
+                    element.placeholder = translation;
+                else
+                    element.innerHTML = translation.replace(/\\n/g, "<br>");
+            }
+        });
+        signInButton.style.width = lang === "hi" ? "90px" : "60px";
+        signInButton.style.fontWeight = "bold";
+    }
+    languageDropdown.addEventListener("change", function () {
+        const selectedOption = languageDropdown.options[languageDropdown.selectedIndex];
+        selectedLanguage.textContent = selectedOption.text;
+        const selectedLang = selectedOption.value === "hi-IN" ? "hi" : "en";
         changeLanguage(selectedLang);
     });
-    window.addEventListener("scroll",function ()
-    {
-        if (window.scrollY>50)
-            navbar.style.background="rgba(0, 0, 0, 0.9)";
-        else
-            navbar.style.background="linear-gradient(to bottom, rgba(229, 9, 20, 0.9) 0%, rgba(0, 0, 0, 0.8) 40%, rgba(0, 0, 0, 0) 100%)";
+    function moveBackground() {
+        if (!isPaused) {
+            position -= 0.3;
+            bannerSection.style.backgroundPosition = `${position}px 0`;
+            animationFrame = requestAnimationFrame(moveBackground);
+        }
+    }
+    function updateButtonIcon() {
+        playPauseButton.classList.toggle("paused", isPaused);
+        playPauseButton.classList.toggle("playing", !isPaused);
+    }
+    playPauseButton.addEventListener("click", function () {
+        isPaused = !isPaused;
+        if (isPaused) cancelAnimationFrame(animationFrame);
+        else moveBackground();
+        updateButtonIcon();
     });
+    window.addEventListener("resize", function () {
+        cancelAnimationFrame(animationFrame);
+        position = 0;
+        bannerSection.style.backgroundPosition = "0px 0";
+        if (!isPaused) moveBackground();
+    });
+    updateButtonIcon();
+    moveBackground();
 });
