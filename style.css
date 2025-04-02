@@ -48,7 +48,7 @@ nav{
     justify-content: center;
     background-color: rgba(22, 22, 22, 0.7);
     border: 1px solid rgba(255, 248, 248, 0.5);
-    border-radius: 26px;
+    border-radius: 50px;
     cursor: pointer;
     padding: 7px 10px;
     position: relative;
@@ -90,7 +90,7 @@ nav{
 .signinButton{
     background-color: #fff;
     padding: .5rem .8rem;
-    border-radius: 26px;
+    border-radius: 50px;
     outline: none;
     border: none;
     margin-left: 15px;
