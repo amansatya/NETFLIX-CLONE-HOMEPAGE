@@ -39,8 +39,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     function updateButtonIcon() {
-        playPauseButton.classList.toggle("paused", isPaused);
-        playPauseButton.classList.toggle("playing", !isPaused);
+        if (isPaused)
+        {
+            playPauseButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <polygon points="5,3 19,12 5,21"></polygon>
+            </svg>`;
+        }
+        else
+        {
+            playPauseButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+            <rect x="6" y="5" width="4" height="14"></rect>
+            <rect x="14" y="5" width="4" height="14"></rect>
+        </svg>`;
+        }
     }
     playPauseButton.addEventListener("click", function () {
         isPaused = !isPaused;
