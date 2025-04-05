@@ -5,24 +5,28 @@ document.addEventListener("DOMContentLoaded", function () {
     const bannerSection = document.querySelector(".bannerSection");
     const playPauseButton = document.querySelector(".playPauseIcon");
     const emailInputBox = document.querySelector(".emailInputBox");
+    const carousel = document.getElementById("carousel");
+    const rightBtn = document.getElementById("rightBtn");
+    const leftBtn = document.getElementById("leftBtn");
+    const scrollToStartBtn = document.getElementById("scrollToStart");
+    const scrollToEndBtn = document.getElementById("scrollToEnd");
     if (!languageDropdown || !selectedLanguage || !signInButton || !bannerSection || !playPauseButton || !emailInputBox) {
         console.error("One or more elements are missing!");
         return;
     }
-    let isPaused = false;
-    let position = 0;
-    let animationFrame;
     function changeLanguage(lang) {
         document.querySelectorAll("[data-lang]").forEach((element) => {
             const translation = element.getAttribute(`data-${lang}`);
             if (translation) {
-                if (element.tagName === "INPUT")
+                if (element.tagName === "INPUT") {
                     element.placeholder = translation;
-                else
+                } else {
                     element.innerHTML = translation.replace(/\\n/g, "<br>");
+                }
             }
         });
-        signInButton.style.width = lang === "hi" ? "90px" : "60px";
+        signInButton.style.width = "auto";
+        signInButton.style.padding = "0 1rem";
         signInButton.style.fontWeight = "bold";
     }
     languageDropdown.addEventListener("change", function () {
@@ -31,6 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const selectedLang = selectedOption.value === "hi-IN" ? "hi" : "en";
         changeLanguage(selectedLang);
     });
+    let isPaused = false;
+    let position = 0;
+    let animationFrame;
     function moveBackground() {
         if (!isPaused) {
             position -= 0.3;
@@ -39,24 +46,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     function updateButtonIcon() {
-        if (isPaused)
-        {
-            playPauseButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
-                <polygon points="5,3 19,12 5,21"></polygon>
-            </svg>`;
-        }
-        else
-        {
-            playPauseButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
-            <rect x="6" y="5" width="4" height="14"></rect>
-            <rect x="14" y="5" width="4" height="14"></rect>
-        </svg>`;
-        }
+        playPauseButton.innerHTML = isPaused
+            ? `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"></polygon></svg>`
+            : `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><rect x="6" y="5" width="4" height="14"></rect><rect x="14" y="5" width="4" height="14"></rect></svg>`;
     }
     playPauseButton.addEventListener("click", function () {
         isPaused = !isPaused;
-        if (isPaused) cancelAnimationFrame(animationFrame);
-        else moveBackground();
+        if (isPaused) {
+            cancelAnimationFrame(animationFrame);
+        } else {
+            moveBackground();
+        }
         updateButtonIcon();
     });
     window.addEventListener("resize", function () {
@@ -67,4 +67,39 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     updateButtonIcon();
     moveBackground();
+    if (carousel && rightBtn && leftBtn) {
+        function updateCarouselButtons() {
+            const scrollLeft = carousel.scrollLeft;
+            const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+
+            rightBtn.style.opacity = scrollLeft >= maxScrollLeft - 5 ? '0' : '1';
+            rightBtn.style.pointerEvents = scrollLeft >= maxScrollLeft - 5 ? 'none' : 'auto';
+
+            leftBtn.style.opacity = scrollLeft <= 5 ? '0' : '1';
+            leftBtn.style.pointerEvents = scrollLeft <= 5 ? 'none' : 'auto';
+        }
+        rightBtn.addEventListener("click", () => {
+            carousel.scrollBy({ left: carousel.clientWidth, behavior: "smooth" });
+        });
+        leftBtn.addEventListener("click", () => {
+            carousel.scrollBy({ left: -carousel.clientWidth, behavior: "smooth" });
+        });
+        carousel.addEventListener("scroll", updateCarouselButtons);
+        window.addEventListener("load", updateCarouselButtons);
+        updateCarouselButtons();
+        carousel.setAttribute("tabindex", "0"); // Make focusable
+        carousel.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowRight") {
+                carousel.scrollBy({ left: carousel.clientWidth, behavior: "smooth" });
+            } else if (e.key === "ArrowLeft") {
+                carousel.scrollBy({ left: -carousel.clientWidth, behavior: "smooth" });
+            }
+        });
+        scrollToStartBtn?.addEventListener("click", () => {
+            carousel.scrollTo({ left: 0, behavior: "smooth" });
+        });
+        scrollToEndBtn?.addEventListener("click", () => {
+            carousel.scrollTo({ left: carousel.scrollWidth, behavior: "smooth" });
+        });
+    }
 });

@@ -1,39 +1,40 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body{
+body {
     background: linear-gradient(to bottom, #350d0d 10%, #430c0c 50%, #4a0303 100%);
     min-height: 100vh;
-    margin: 0;
     font-family: 'Montserrat', 'Arial Black', sans-serif;
+    padding-right: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
-.mainnetflixcontainer{
+.mainnetflixcontainer {
     border: 2px solid yellow;
     padding-top: 2px;
     transition: background 0.3s ease-in-out;
     position: relative;
     z-index: 0;
 }
-.backgroundContainer{
+.backgroundContainer {
     background-image: url("MAIN IMAGES/BANNER/bannerimage.jpg");
-    filter: blur(40px);
-    height: 112vh;
+    filter: blur(30px);
+    height: 212vh;
     position: relative;
 }
-.pinkOverlay{
+.pinkOverlay {
     background-color: rgba(104, 3, 20, 0.404);
     height: 100%;
     width: 100%;
 }
-.contentContainer{
+.contentContainer {
     position: absolute;
     top: 0;
-    background-color: rgba(0, 0, 0, .5);
     padding: 0 2rem;
 }
-nav{
+nav {
     display: flex;
     background: transparent;
     height: 20vh;
@@ -41,17 +42,17 @@ nav{
     position: relative;
     z-index: 1;
 }
-.navbarlogo{
+.navbarlogo {
     width: 50%;
 }
-.logo{
+.logo {
     width: 32.5%;
-    filter: brightness(1.2) contrast(1.5) sepia(0.5) saturate(2);
+    filter: brightness(1.5) contrast(2) sepia(0.5) saturate(2);
 }
-.logosmall{
+.logosmall {
     display: none;
     width: 40px;
-    filter: brightness(1.2) contrast(1.5) sepia(0.5) saturate(2);
+    filter: brightness(1.5) contrast(2) sepia(0.5) saturate(2);
 }
 @media screen and (max-width: 960px) {
     .logo {
@@ -61,7 +62,7 @@ nav{
         display: block;
     }
 }
-.navbarbutton{
+.navbarbutton {
     display: flex;
     justify-content: flex-end;
     width: 50%;
@@ -109,11 +110,11 @@ nav{
     fill: white;
     color: white;
 }
-.svgdropdown{
+.svgdropdown {
     padding-top: 2px;
     margin-left: -5px;
 }
-.signinButton{
+.signinButton {
     background-color: #fff;
     padding: .5rem .8rem;
     border-radius: 50px;
@@ -128,11 +129,11 @@ nav{
 .sectionsContainer {
     margin-top: 12vh;
     background: transparent;
-    padding-left:15px;
+    padding-left: 15px;
+    padding-right: 10px;
 }
 .bannerSection {
     height: 97vh;
-    repeat-x: center center/cover no-repeat;
     border-radius: 22px;
     position: relative;
     overflow: hidden;
@@ -151,7 +152,7 @@ nav{
     width: 100%;
     height: 100%;
     border-radius: 20px;
-    background-image: linear-gradient(360deg, #535353 -30%,rgba(18, 18, 18, 0.94) 31.45%,rgba(19, 19, 19, 0.79) 75%,rgba(18, 18, 18, 0.55) 84.5%);
+    background-image: linear-gradient(360deg, #3a3a3a -30%,rgba(18, 18, 18, 0.94) 31.45%,rgba(19, 19, 19, 0.79) 75%,rgba(18, 18, 18, 0.55) 84.5%);
     z-index: 1;
 }
 .bannerContainer {
@@ -185,8 +186,6 @@ nav{
     font-weight: 700;
     margin: 0.5rem 0;
     color: #ffffff;
-    opacity: 1;
-    text-decoration-style: solid;
 }
 .bannerContainer h4 {
     font-size: 1.2rem;
@@ -262,65 +261,98 @@ nav{
     width: 20px;
     height: 20px;
 }
-/*.carouselSection,*/
-/*.planSection,*/
-/*.reasonToJoinSection,*/
-/*.faqSection,*/
-/*.getStartedSection{*/
-/*    !* border: 2px solid red; *!*/
-/*    color: white;*/
-
-/*}*/
-
-/*.carouselSection h2,*/
-/*.planSection h2,*/
-/*.reasonToJoinSection h2,*/
-/*.faqSection h2{*/
-/*    !* border: 2px solid red; *!*/
-/*    margin-left: 5rem;*/
-/*    font-size: 2.5rem;*/
-/*}*/
-
-/*.carouselCardConatiner,*/
-/*.plansConatiner,*/
-/*.reasonsConatiner,*/
-/*.faqCardsContainer{*/
-/*    !* border: 2px solid green; *!*/
-/*    height: 100%;*/
-/*    width: 90%;*/
-/*    display: flex;*/
-/*    justify-content: space-evenly;*/
-/*    margin: 2rem auto;*/
-/*}*/
-
-
-/*.carouselCard{*/
-/*    width: 12%;*/
-/*    !* border: 2px solid yellow; *!*/
-/*    height: 38vh;*/
-/*    border-radius: 20px;*/
-/*    position: relative;*/
-/*}*/
-
-/*.carouselNumberContainer{*/
-/*    position: absolute;*/
-/*    left: -20px;*/
-/*}*/
-
-/*.carouselNumberContainer span{*/
-/*    color: rgba(0, 0, 0, 0.8);*/
-/*    -webkit-text-stroke: 0.125rem rgb(255, 255, 255);*/
-/*    text-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.5);*/
-/*    font-size: 4rem;*/
-/*}*/
-
-/*.carouselImageContainer{*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*}*/
-
-/*.carouselImageContainer img{*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    border-radius: 20px;*/
-/*}*/
+.trendingSection {
+    position: relative;
+    padding: 2rem 4rem 2rem 2rem;
+    color: white;
+    overflow: hidden;
+    width: 92vw;
+}
+.trendingSection h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    z-index: 0;
+}
+.carouselCardContainer {
+    padding-top: 30px;
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    gap: 1.2rem;
+    width: 100%;
+    z-index: 0;
+}
+.carouselCard {
+    border-radius: 10px;
+    position: relative;
+}
+.carouselCardContainer::-webkit-scrollbar {
+    display: none;
+}
+.carouselCard {
+    flex: 0 0 auto;
+    width: 180px;
+    position: relative;
+    border-radius: 10px;
+    overflow: visible;
+    transition: transform 0.3s ease;
+    background: transparent;
+    padding-left: 25px;
+}
+.carouselCard:hover {
+    transform: scale(1.1);
+    z-index: 1;
+}
+.carouselImageContainer img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    object-fit: cover;
+    linear-gradient(360deg, #3a3a3a -30%,rgba(18, 18, 18, 0.94) 31.45%,rgba(19, 19, 19, 0.79) 75%,rgba(18, 18, 18, 0.55) 84.5%);
+}
+.carouselNumberContainer {
+    position: absolute;
+    top: 10px;
+    left: -5px;
+    font-size: 5rem;
+    font-weight: 900;
+    color: black;
+    -webkit-text-stroke: 3px white;
+    text-shadow: 0 0 8px rgba(0,0,0,0.6);
+    line-height: 1;
+    z-index: 10;
+    font-family: 'Arial Black', sans-serif;
+    overflow: visible;
+}
+.scrollBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 20;
+    padding: 0.5rem;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+.scrollBtn.show {
+    display: block;
+}
+.scrollBtn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.scrollBtn svg {
+    width: 32px;
+    height: 32px;
+    fill: white;
+}
+.scrollBtn.left {
+    left: 0.5rem;
+}
+.scrollBtn.right {
+    right: 0.5rem;
+}
