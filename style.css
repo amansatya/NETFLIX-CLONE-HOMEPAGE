@@ -4,8 +4,8 @@
     box-sizing: border-box;
 }
 body {
-    background: linear-gradient(to bottom, #350d0d 10%, #430c0c 50%, #4a0303 100%);
-    min-height: 100vh;
+    background: linear-gradient(to bottom, #270101 10%, #230101 50%, #3e0202 100%);
+    min-height: 150vh;
     font-family: 'Montserrat', 'Arial Black', sans-serif;
     padding-right: 10px;
     overflow-y: auto;
@@ -21,11 +21,11 @@ body {
 .backgroundContainer {
     background-image: url("MAIN IMAGES/BANNER/bannerimage.jpg");
     filter: blur(30px);
-    height: 212vh;
+    height: 292vh;
     position: relative;
 }
 .pinkOverlay {
-    background-color: rgba(104, 3, 20, 0.404);
+    background: linear-gradient(360deg, #202020 -30%,rgba(18, 18, 18, 0.94) 31.45%,rgba(19, 19, 19, 0.79) 75%,rgba(18, 18, 18, 0.55) 84.5%);
     height: 100%;
     width: 100%;
 }
@@ -355,4 +355,55 @@ nav {
 }
 .scrollBtn.right {
     right: 0.5rem;
+}
+.reasonToJoinSection h2{
+    margin-left: 4rem;
+    color: rgb(255, 255, 255);
+    font-size: 2rem;
+    font-weight: 700;
+}
+.reasonsConatiner{
+    height: 100%;
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 0.5rem;
+    margin-left: 40px;
+    background: transparent;
+}
+.reasonCard{
+    width: 23%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem 1rem 1rem;
+    border-radius: 20px;
+    background: rgba(60, 60, 60, 0.5);
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.04);
+    height: 43vh;
+    gap: 10px;
+}
+.reasonCard h2{
+    font-size: 1rem;
+    font-weight: 500;
+    margin-left: 0;
+    margin-bottom: 5px;
+    color: rgb(255, 255, 255);
+}
+.reasonCard p{
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: -60px;
+    font-weight: normal;
+    margin-top: 13px;
+}
+.reasonCardLowerContent{
+    display: flex;
+    justify-content: end;
+}
+.reasonCardLowerContent svg{
+    height: 50px;
+    width: 50px;
+    margin-top: -40px;
 }
