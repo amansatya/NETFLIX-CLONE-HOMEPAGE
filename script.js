@@ -10,13 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const leftBtn = document.getElementById("leftBtn");
     const scrollToStartBtn = document.getElementById("scrollToStart");
     const scrollToEndBtn = document.getElementById("scrollToEnd");
-    const movingText = document.getElementById("movingText");
-
     if (!languageDropdown || !selectedLanguage || !signInButton || !bannerSection || !playPauseButton || !emailInputBox) {
         console.error("One or more elements are missing!");
         return;
     }
-
     function changeLanguage(lang) {
         document.querySelectorAll("[data-lang]").forEach((element) => {
             const translation = element.getAttribute(`data-${lang}`);
@@ -32,27 +29,15 @@ document.addEventListener("DOMContentLoaded", function () {
         signInButton.style.padding = "0 1rem";
         signInButton.style.fontWeight = "bold";
     }
-
-    // Load saved language from localStorage on page load
-    const savedLang = localStorage.getItem("selectedLang") || "en";
-    changeLanguage(savedLang);
-
-    const langOption = savedLang === "hi" ? "hi-IN" : "en-US";
-    languageDropdown.value = langOption;
-    selectedLanguage.textContent = languageDropdown.options[languageDropdown.selectedIndex].text;
-
     languageDropdown.addEventListener("change", function () {
         const selectedOption = languageDropdown.options[languageDropdown.selectedIndex];
         selectedLanguage.textContent = selectedOption.text;
         const selectedLang = selectedOption.value === "hi-IN" ? "hi" : "en";
-        localStorage.setItem("selectedLang", selectedLang); // Save to localStorage
         changeLanguage(selectedLang);
     });
-
     let isPaused = false;
     let position = 0;
     let animationFrame;
-
     function moveBackground() {
         if (!isPaused) {
             position -= 0.3;
@@ -60,13 +45,11 @@ document.addEventListener("DOMContentLoaded", function () {
             animationFrame = requestAnimationFrame(moveBackground);
         }
     }
-
     function updateButtonIcon() {
         playPauseButton.innerHTML = isPaused
             ? `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"></polygon></svg>`
             : `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><rect x="6" y="5" width="4" height="14"></rect><rect x="14" y="5" width="4" height="14"></rect></svg>`;
     }
-
     playPauseButton.addEventListener("click", function () {
         isPaused = !isPaused;
         if (isPaused) {
@@ -76,17 +59,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         updateButtonIcon();
     });
-
     window.addEventListener("resize", function () {
         cancelAnimationFrame(animationFrame);
         position = 0;
         bannerSection.style.backgroundPosition = "0px 0";
         if (!isPaused) moveBackground();
     });
-
     updateButtonIcon();
     moveBackground();
-
     if (carousel && rightBtn && leftBtn) {
         function updateCarouselButtons() {
             const scrollLeft = carousel.scrollLeft;
@@ -98,19 +78,15 @@ document.addEventListener("DOMContentLoaded", function () {
             leftBtn.style.opacity = scrollLeft <= 5 ? '0' : '1';
             leftBtn.style.pointerEvents = scrollLeft <= 5 ? 'none' : 'auto';
         }
-
         rightBtn.addEventListener("click", () => {
             carousel.scrollBy({ left: carousel.clientWidth, behavior: "smooth" });
         });
-
         leftBtn.addEventListener("click", () => {
             carousel.scrollBy({ left: -carousel.clientWidth, behavior: "smooth" });
         });
-
         carousel.addEventListener("scroll", updateCarouselButtons);
         window.addEventListener("load", updateCarouselButtons);
         updateCarouselButtons();
-
         carousel.setAttribute("tabindex", "0"); // Make focusable
         carousel.addEventListener("keydown", (e) => {
             if (e.key === "ArrowRight") {
@@ -119,27 +95,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 carousel.scrollBy({ left: -carousel.clientWidth, behavior: "smooth" });
             }
         });
-
         scrollToStartBtn?.addEventListener("click", () => {
             carousel.scrollTo({ left: 0, behavior: "smooth" });
         });
-
         scrollToEndBtn?.addEventListener("click", () => {
             carousel.scrollTo({ left: carousel.scrollWidth, behavior: "smooth" });
         });
-    }
-
-    // ✅ Moving trending text section
-    if (movingText) {
-        const texts = ["Now in Hindi", "Streaming Worldwide", "New Arrivals", "Watch Now"];
-        let index = 0;
-
-        function updateMovingText() {
-            movingText.textContent = texts[index];
-            index = (index + 1) % texts.length;
-        }
-
-        updateMovingText(); // show first text immediately
-        setInterval(updateMovingText, 2000); // rotate every 2 seconds
     }
 });
