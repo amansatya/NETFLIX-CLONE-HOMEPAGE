@@ -28,6 +28,15 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     }
+    function switchPostersByLanguage(lang) {
+        const posterImages = document.querySelectorAll('#carousel img');
+        posterImages.forEach(img => {
+            const newSrc = img.getAttribute(`data-${lang}`);
+            if (newSrc) {
+                img.src = newSrc;
+            }
+        });
+    }
     function changeLanguage(lang) {
         document.querySelectorAll("[data-lang]").forEach((element) => {
             const translation = element.getAttribute(`data-${lang}`);
@@ -40,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
         changeTitleAndMeta(lang);
+        switchPostersByLanguage(lang);
         signInButton.style.width = "auto";
         signInButton.style.padding = "0 1rem";
         signInButton.style.fontWeight = "bold";
