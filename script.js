@@ -14,6 +14,20 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("One or more elements are missing!");
         return;
     }
+    function changeTitleAndMeta(lang) {
+        const metaDesc = document.querySelector("meta[name='description']");
+        if (lang === "hi") {
+            document.title = "Netflix भारत - टीवी शो और फ़िल्में ऑनलाइन देखें";
+            if (metaDesc) {
+                metaDesc.setAttribute("content", "Netflix पर टीवी शो और फ़िल्में ऑनलाइन देखें।");
+            }
+        } else {
+            document.title = "Netflix India – Watch TV Shows Online, Watch Movies Online";
+            if (metaDesc) {
+                metaDesc.setAttribute("content", "Watch Netflix movies & TV shows online.");
+            }
+        }
+    }
     function changeLanguage(lang) {
         document.querySelectorAll("[data-lang]").forEach((element) => {
             const translation = element.getAttribute(`data-${lang}`);
@@ -25,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
         });
+        changeTitleAndMeta(lang);
         signInButton.style.width = "auto";
         signInButton.style.padding = "0 1rem";
         signInButton.style.fontWeight = "bold";
