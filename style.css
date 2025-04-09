@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body {
-    background: linear-gradient(to bottom, #250101 10%, #200000 50%, #230101 100%);
+    background: linear-gradient(to bottom, #000000 10%, #000000 50%, #0c0101 100%);
     min-height: 150vh;
     font-family: 'Montserrat', 'Arial Black', sans-serif;
     padding-right: 10px;
@@ -12,7 +12,6 @@ body {
     overflow-x: hidden;
 }
 .mainnetflixcontainer {
-    border: 2px solid yellow;
     padding-top: 2px;
     transition: background 0.3s ease-in-out;
     position: relative;
@@ -21,7 +20,7 @@ body {
 .backgroundContainer {
     background-image: url("MAIN IMAGES/BANNER/bannerimage.jpg");
     filter: blur(30px);
-    height: 400vh;
+    height: 500vh;
     position: relative;
 }
 .pinkOverlay {
@@ -69,7 +68,7 @@ nav {
     padding-top: 16px;
     margin-right: 10px;
 }
-.navbarlanguage {
+.navbarlanguage,.footerlanguage {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -232,6 +231,11 @@ nav {
     align-items: center;
     gap: 0.5rem;
     transition: background-color 0.2s ease-in;
+    width: 140px;
+    justify-content: space-between;
+}
+.inputContainer svg{
+    margin-left: -40px;
 }
 .playPauseIcon {
     position: absolute;
@@ -451,4 +455,25 @@ nav {
 }
 .faqCardsContainer{
     flex-direction: column;
+}
+.getStartedSection{
+    color: white;
+}
+.getStartedSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.getStartedSection p{
+    margin-bottom: 1rem
+}
+.getStartedSection button{
+    width: 140px;
+    align-items: center;
+    justify-content: space-between;
+}
+.getStartedSection svg{
+    margin-left: -40px;
 }
