@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body {
-    background: linear-gradient(to bottom, #270101 10%, #230101 50%, #3e0202 100%);
+    background: linear-gradient(to bottom, #250101 10%, #200000 50%, #230101 100%);
     min-height: 150vh;
     font-family: 'Montserrat', 'Arial Black', sans-serif;
     padding-right: 10px;
