@@ -21,7 +21,7 @@ body {
 .backgroundContainer {
     background-image: url("MAIN IMAGES/BANNER/bannerimage.jpg");
     filter: blur(30px);
-    height: 292vh;
+    height: 400vh;
     position: relative;
 }
 .pinkOverlay {
@@ -406,4 +406,51 @@ nav {
     height: 50px;
     width: 50px;
     margin-top: -40px;
+}
+.faqSection{
+    /* border: 2px solid red; */
+    color: white;
+
+}
+.faqSection h2{
+    margin-left: 3.5rem;
+    font-size: 2.5rem;
+    margin-top: 2rem;
+}
+.faqCardsContainer{
+    height: 100%;
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0.4rem auto;
+}
+.faqCard{
+    width: 100%;
+}
+.faqQuestion,
+.faqAnswer{
+    padding: 1rem;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    border: 1px solid lightgrey;
+    background-color: #2e2e2e;
+}
+.faqQuestion{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.faqQuestion span{
+    font-size: 2rem;
+    font-weight: 900;
+}
+.faqAnswer {
+    display: none;
+}
+.faqCard:hover{
+    cursor: pointer;
+    filter: brightness(1.5);
+}
+.faqCardsContainer{
+    flex-direction: column;
 }
