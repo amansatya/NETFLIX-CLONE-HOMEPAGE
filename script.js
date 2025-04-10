@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const languageDropdown = document.querySelector(".language-dropdown");
-    const selectedLanguage = document.querySelector(".selected-language");
+    const languageDropdowns = document.querySelectorAll(".language-dropdown");
+    const selectedLanguageSpans = document.querySelectorAll(".selected-language");
     const signInButton = document.querySelector("[data-lang='signIn']");
     const bannerSection = document.querySelector(".bannerSection");
     const playPauseButton = document.querySelector(".playPauseIcon");
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const leftBtn = document.getElementById("leftBtn");
     const scrollToStartBtn = document.getElementById("scrollToStart");
     const scrollToEndBtn = document.getElementById("scrollToEnd");
-    if (!languageDropdown || !selectedLanguage || !signInButton || !bannerSection || !playPauseButton || !emailInputBox) {
+    if (!languageDropdowns.length || !selectedLanguageSpans.length || !signInButton || !bannerSection || !playPauseButton || !emailInputBox) {
         console.error("One or more elements are missing!");
         return;
     }
@@ -51,19 +51,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     const savedLang = localStorage.getItem("preferredLanguage");
     if (savedLang) {
-        const langOption = [...languageDropdown.options].find(opt => opt.value === savedLang);
+        const langOption = [...languageDropdowns[0].options].find(opt => opt.value === savedLang);
         if (langOption) {
-            languageDropdown.value = savedLang;
-            selectedLanguage.textContent = langOption.text;
+            languageDropdowns.forEach(dropdown => dropdown.value = savedLang);
+            selectedLanguageSpans.forEach(span => {
+                span.textContent = langOption.text;
+            });
             changeLanguage(savedLang === "hi-IN" ? "hi" : "en");
         }
     }
-    languageDropdown.addEventListener("change", function () {
-        const selectedOption = languageDropdown.options[languageDropdown.selectedIndex];
-        selectedLanguage.textContent = selectedOption.text;
-        const selectedLang = selectedOption.value === "hi-IN" ? "hi" : "en";
-        changeLanguage(selectedLang);
-        localStorage.setItem("preferredLanguage", selectedOption.value);
+    languageDropdowns.forEach(dropdown => {
+        dropdown.addEventListener("change", function () {
+            const selectedOption = dropdown.options[dropdown.selectedIndex];
+            const selectedLang = selectedOption.value === "hi-IN" ? "hi" : "en";
+
+            selectedLanguageSpans.forEach(span => {
+                span.textContent = selectedOption.text;
+            });
+
+            languageDropdowns.forEach(d => d.value = selectedOption.value); // sync all dropdowns
+            changeLanguage(selectedLang);
+            localStorage.setItem("preferredLanguage", selectedOption.value);
+        });
     });
     let isPaused = false;
     let position = 0;

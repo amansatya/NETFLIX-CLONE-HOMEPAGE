@@ -68,7 +68,7 @@ nav {
     padding-top: 16px;
     margin-right: 10px;
 }
-.navbarlanguage,.footerlanguage {
+.navbarlanguage{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -192,7 +192,7 @@ nav {
     color: #ffffff;
 }
 .bannerContainer p {
-    font-size: 10px;
+    font-size: 13px;
     margin: 1rem 0;
     max-width: 600px;
     color: #ffffff;
@@ -211,8 +211,9 @@ nav {
     background-color: rgba(255, 255, 255, 0.2);
     color: #fff;
     font-size: 1rem;
-    width: 250px;
     border: 1px solid lightgrey;
+    height: 55px;
+    width: 400px;
 }
 .emailInputBox::placeholder {
     color: #fff;
@@ -223,7 +224,6 @@ nav {
     outline: none;
     border-radius: 50px;
     color: #fff;
-    font-size: 1rem;
     font-weight: 700;
     padding: 0.8rem 1rem;
     cursor: pointer;
@@ -231,8 +231,10 @@ nav {
     align-items: center;
     gap: 0.5rem;
     transition: background-color 0.2s ease-in;
-    width: 140px;
     justify-content: space-between;
+    height: 55px;
+    font-size: 1.5rem;
+    width: 240px;
 }
 .inputContainer svg{
     margin-left: -40px;
@@ -465,15 +467,80 @@ nav {
     justify-content: center;
     align-items: center;
     margin-bottom: 2rem;
+    margin-top: 3rem;
 }
 .getStartedSection p{
-    margin-bottom: 1rem
+    margin-bottom: 1rem;
+    font-size: 0.87rem;
+    font-weight: lighter;
 }
 .getStartedSection button{
-    width: 140px;
+    width: 240px;
     align-items: center;
     justify-content: space-between;
+    height: 55px;
+    font-size: 1.5rem;
+}
+.getStartedSection .emailInputBox{
+    height: 55px;
+    width: 400px;
 }
 .getStartedSection svg{
-    margin-left: -40px;
+    margin-left: -60px;
+}
+.footer {
+    color: rgba(255, 255, 255, 0.7);
+    padding: 40px 20px;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-left: 65px;
+}
+.footer-contact {
+    margin-bottom: 20px;
+}
+.footer-contact a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: underline;
+}
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 90px;
+    margin-bottom: 30px;
+}
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: underline;
+    display: block;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+    font-weight: normal;
+}
+.footer-links a:hover {
+    color: rgba(255, 255, 255, 0.7);
+}
+.footer-lang {
+    margin-bottom: 20px;
+}
+.footerlanguage{
+    justify-content: center;
+    background-color: rgba(22, 22, 22, 0.7);
+    border: 1px solid rgba(255, 248, 248, 0.5);
+    border-radius: 50px;
+    cursor: pointer;
+    padding: 7px 10px;
+    position: relative;
+    height: 34px;
+    width: fit-content;
+    margin-top: 50px;
+}
+.footer-country {
+    margin-top: 40px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
 }
